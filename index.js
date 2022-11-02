@@ -18,6 +18,7 @@ if (!teamName) {
   process.exit(1);
 }
 
+// Read the CSV file
 csv()
   .fromFile(csvPath)
   .then((jsonObj) => {
@@ -53,12 +54,11 @@ csv()
     // Write csv to file
     // Append .output to the filename
     const outputFilename = csvPath.split(".csv")[0] + ".output" + ".csv";
+    fs.writeFileSync(outputFilename, csv);
 
     // Write json to file
     // Append .output to the filename
     const jsonOutputFilename = csvPath.split(".csv")[0] + ".output" + ".json";
     const jsonOutput = output.map((e) => e.json);
     fs.writeFileSync(jsonOutputFilename, JSON.stringify(jsonOutput));
-
-    fs.writeFileSync(outputFilename, csv);
   });
