@@ -8,9 +8,11 @@ Script to generate [CHIP-0007](https://github.com/Chia-Network/chips/blob/main/a
 - Node.js >= v10
 - An input CSV file with the following headers
   - `Series Number`
-  - `File Name`
+  - `Filename`
+  - `Name`
   - `Description`
   - `Gender`
+  - `Attributes`: in the format `trait_name:value;trait_name:value`
 
 ## Setup
 
@@ -29,16 +31,16 @@ npm install
 
 ### Usage
 
-Run the start command with 2 arguments - File name and team name
+Run the start command with 1 arguments - The name/path of your input csv file.
 
 ```bash
-npm run start <Input CSV file name/path> <Team Name>
+npm run start <Input CSV file name/path>
 ```
 
 Example
 
 ```bash
-npm run start test.csv "Team Sky"
+npm run start test.csv
 ```
 
 This will output 2 files to the directory
