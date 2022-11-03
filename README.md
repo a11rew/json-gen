@@ -45,3 +45,5 @@ This will output 2 files to the directory
 
 - A csv file with SHA256 hashes appended to the input CSV's rows. This file is named `<File name>.output.csv`
 - A json file with entries following the CHIP-0007 standard. This file is named `<File name>.json`
+
+See the `sample` directory for example usage.
