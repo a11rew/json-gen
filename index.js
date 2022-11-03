@@ -20,8 +20,6 @@ csv()
     // Use number of rows to determine series_total
     const series_total = jsonObj.length;
 
-    console.log(jsonObj[0]);
-
     const output = jsonObj.map((obj) => {
       // Generate CHIP-0007 JSON
       const json = jsonGen({

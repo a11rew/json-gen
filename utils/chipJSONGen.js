@@ -1,5 +1,6 @@
 const jsonGen = (vals) => {
   const {
+    // Specify default values
     format = "CHIP-0007",
     name = "",
     gender = "",
@@ -11,6 +12,7 @@ const jsonGen = (vals) => {
     attributes,
   } = vals;
 
+  // Parse attributes
   const rawAttributes = attributes.split(";");
   // Split each attribute into key and value with a colon
   const attributesArray = rawAttributes.map((attr) => {
