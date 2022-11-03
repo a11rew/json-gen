@@ -12,24 +12,25 @@ if (!csvPath) {
   console.log("Please provide a path to a CSV file");
   process.exit(1);
 }
-const teamName = args[1];
-if (!teamName) {
-  console.log("Please provide a team name");
-  process.exit(1);
-}
 
 // Read the CSV file
 csv()
   .fromFile(csvPath)
   .then((jsonObj) => {
+    // Use number of rows to determine series_total
+    const series_total = jsonObj.length;
+
+    console.log(jsonObj[0]);
+
     const output = jsonObj.map((obj) => {
       // Generate CHIP-0007 JSON
       const json = jsonGen({
-        name: obj["Filename"],
+        name: obj["Name"],
         series_number: obj["Series Number"],
-        minting_tool: teamName,
         description: obj["Description"],
         gender: obj["Gender"],
+        attributes: obj["Attributes"],
+        series_total,
       });
 
       // Generate sha256 hash
@@ -48,7 +49,10 @@ csv()
     const csvOutput = output.map((e) => ({ ...e.obj, Hash: e.hash }));
 
     // Convert to CSV with hash included
-    const parser = new Parser();
+    const parser = new Parser({
+      // Disable quotes around fields
+      quote: "",
+    });
     const csv = parser.parse(csvOutput);
 
     // Write csv to file
